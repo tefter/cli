@@ -1,0 +1,16 @@
+#!/bin/bash
+
+docker build -t cli .
+docker cp $(docker create cli:latest):/app ./releases/tefter_linux_x86_64
+
+cat > ./releases/tefter_linux_x86_64/tefter <<- "EOF"
+./bin/tefter_cli start
+EOF
+
+chmod u+x ./releases/tefter_linux_x86_64/tefter
+cd releases
+tar -zcf linux_x86_64.tar.gz ./tefter_linux_x86_64/
+
+rm -rf ./tefter_linux_x86_64
+
+echo Done!

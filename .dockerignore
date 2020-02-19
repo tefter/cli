@@ -1,0 +1,6 @@
+.git/
+_build/
+deps/
+tmp/
+log/
+releases/
