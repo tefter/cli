@@ -71,3 +71,8 @@ Run:
 ```shell
 ./bin/release_macos
 ```
+
+## License
+
+Copyright (c) 2020 Tefter, GPLv3 License.
+See [LICENSE.txt](https://github.com/tefter/cli/blob/master/LICENSE) for further details.
