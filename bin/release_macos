@@ -2,7 +2,7 @@
 
 os="$(uname -s)"
 
-test "$os" != 'Darwin' && (echo 'MacOS released must be built on a MacOS system, sorry.'; exit 1)
+test "$os" != 'Darwin' && (echo 'The MacOS release must be built on a MacOS system, sorry.'; exit 1)
 
 MIX_ENV=prod mix release --quiet --overwrite
 
@@ -12,7 +12,6 @@ EOF
 
 chmod u+x _build/prod/rel/tefter_cli/tefter
 cd _build/prod/rel/tefter_cli
-echo $PWD
 zip -rq ./../../../../releases/macos.zip .
 
 echo Done!
