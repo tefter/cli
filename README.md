@@ -64,6 +64,25 @@ Use the `:s` command to display more details about the bookmark under the cursor
 
 ![usage](https://i.imgur.com/dGbncJY.png)
 
+**Shortcuts**
+
+Key|Action
+----|------|
+<kbd>Ctrl</kbd>+<kbd>s</kbd>|Jump to Search tab
+<kbd>Ctrl</kbd>+<kbd>a</kbd>|Jump to Aliases tab
+<kbd>Ctrl</kbd>+<kbd>b</kbd>|Jump to Bookmarks tab
+<kbd>Ctrl</kbd>+<kbd>h</kbd>|Jump to Help tab
+<kbd>↑</kbd>|Move up
+<kbd>Ctrl</kbd>+<kbd>k</kbd>|Move up
+<kbd>↓</kbd>|Move down
+<kbd>Ctrl</kbd>+<kbd>j</kbd>|Move down
+<kbd>Enter</kbd>| Open browser window with item under cursor
+<kbd>Esc</kbd>|Cancel command / Quit modal
+<kbd>F5</kbd>|Force refresh resources|
+<kbd>Ctrl</kbd>+<kbd>q</kbd>|Quit
+<kbd>/</kbd>|Enter filtering mode
+<kbd>:</kbd>|Enter command mode
+
 ## Installation
 
 Download a compatible release for your system from [releases](https://github.com/tefter/cli/releases).
