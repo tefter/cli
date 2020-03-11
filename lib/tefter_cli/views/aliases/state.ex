@@ -70,6 +70,16 @@ defmodule TefterCli.Views.Aliases.State do
     end
   end
 
+  def run_command(%{cmd: ":e", aliases: %{resources: aliases, cursor: cursor}} = state) do
+    with %{"slug" => id} <- Enum.at(aliases, cursor) do
+      TefterCli.System.open(%{"path" => "aliases/#{id}/edit"})
+    else
+      _ -> state
+    end
+
+    state |> put_in([:cmd], nil)
+  end
+
   def run_command(
         %{cmd: ":d" <> _, aliases: %{resources: [_ | _] = aliases, cursor: cursor}} = state
       ) do
