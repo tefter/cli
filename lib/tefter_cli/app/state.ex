@@ -14,6 +14,7 @@ defmodule TefterCli.App.State do
   @ctrl_s key(:ctrl_s)
   @ctrl_h key(:ctrl_h)
   @f5 key(:f5)
+  @tab key(:tab)
   @escape key(:esc)
 
   @initial_state %{
@@ -57,6 +58,15 @@ defmodule TefterCli.App.State do
       {_, {:event, %{key: @f5}}} ->
         IEx.Helpers.recompile()
         state
+
+      {_, {:event, %{key: @tab}}} ->
+        tabs = TefterCli.App.tabs()
+
+        state
+        |> put_in(
+          [:tab],
+          Enum.at(tabs, rem(Enum.find_index(tabs, &(&1 == state[:tab])) + 1, length(tabs)))
+        )
 
       {%{token: "" <> _}, {:event, %{key: @ctrl_s}}} ->
         put_in(state[:tab], :search)
