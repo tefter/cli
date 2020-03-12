@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## [0.1.2] - 2020-03-12
+
+### Added
+
+* Aliases and bookmark views allow scrolling with `ctrl + d` and `ctrl + u`
+
 ## [0.1.1] - 2020-03-12
 
 ### Added
