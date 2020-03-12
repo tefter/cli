@@ -11,7 +11,7 @@ defmodule TefterCli.App.State do
   @ctrl_b key(:ctrl_b)
   @ctrl_a key(:ctrl_a)
   @ctrl_l key(:ctrl_l)
-  @ctrl_s key(:ctrl_s)
+  @search_keys [key(:ctrl_s), key(:home)]
   @ctrl_h key(:ctrl_h)
   @f5 key(:f5)
   @tab key(:tab)
@@ -68,7 +68,7 @@ defmodule TefterCli.App.State do
           Enum.at(tabs, rem(Enum.find_index(tabs, &(&1 == state[:tab])) + 1, length(tabs)))
         )
 
-      {%{token: "" <> _}, {:event, %{key: @ctrl_s}}} ->
+      {%{token: "" <> _}, {:event, %{key: key}}} when key in @search_keys ->
         put_in(state[:tab], :search)
 
       {%{token: "" <> _}, {:event, %{key: @ctrl_l}}} ->
