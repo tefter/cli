@@ -72,10 +72,14 @@ Key|Action
 <kbd>Ctrl</kbd>+<kbd>a</kbd>|Jump to Aliases tab
 <kbd>Ctrl</kbd>+<kbd>b</kbd>|Jump to Bookmarks tab
 <kbd>Ctrl</kbd>+<kbd>h</kbd>|Jump to Help tab
+<kbd>Tab</kbd>|Jump to the next tab
+<kbd>Home</kbd>|Jump to the first tab
 <kbd>↑</kbd>|Move up
 <kbd>Ctrl</kbd>+<kbd>k</kbd>|Move up
 <kbd>↓</kbd>|Move down
 <kbd>Ctrl</kbd>+<kbd>j</kbd>|Move down
+<kbd>Ctrl</kbd>+<kbd>d</kbd>|Scroll down
+<kbd>Ctrl</kbd>+<kbd>u</kbd>|Scroll up
 <kbd>Enter</kbd>| Open browser window with item under cursor
 <kbd>Esc</kbd>|Cancel command / Quit modal
 <kbd>F5</kbd>|Force refresh resources|
