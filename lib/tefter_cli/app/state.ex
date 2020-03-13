@@ -6,7 +6,7 @@ defmodule TefterCli.App.State do
   require Logger
   import Ratatouille.Constants, only: [key: 1]
 
-  alias TefterCli.Views.{Search, Bookmarks, Aliases}
+  alias TefterCli.Views.{Search, Bookmarks, Aliases, Help}
 
   @ctrl_b key(:ctrl_b)
   @ctrl_a key(:ctrl_a)
@@ -34,6 +34,9 @@ defmodule TefterCli.App.State do
     bookmarks: %{
       resources: nil,
       filtered: [],
+      cursor: 0
+    },
+    help: %{
       cursor: 0
     }
   }
@@ -91,6 +94,9 @@ defmodule TefterCli.App.State do
 
       {%{tab: :bookmarks}, _} ->
         Bookmarks.update(state, msg)
+
+      {%{tab: :help}, _} ->
+        Help.update(state, msg)
 
       _ ->
         state
