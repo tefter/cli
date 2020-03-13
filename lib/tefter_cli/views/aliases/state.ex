@@ -34,19 +34,15 @@ defmodule TefterCli.Views.Aliases.State do
     end
   end
 
-  defp fetch_aliases(state), do: fetch_aliases(state, %{force: true})
+  defp fetch_aliases(state), do: fetch_aliases(state, %{force: false})
 
-  defp fetch_aliases(state, %{force: _}) do
+  defp fetch_aliases(state, %{force: force}) do
     {state,
      Command.new(
        fn ->
-         case Tefter.aliases() do
-           {:ok, %{body: %{"aliases" => aliases}}} ->
-             put_in(state, [:aliases, :resources], aliases)
+         aliases = TefterCli.Aliases.fetch(%{force: force})
 
-           _ ->
-             state
-         end
+         state |> put_in([:aliases, :resources], Enum.reverse(aliases))
        end,
        :aliases_fetched
      )}
@@ -71,8 +67,8 @@ defmodule TefterCli.Views.Aliases.State do
   end
 
   def run_command(%{cmd: ":e", aliases: %{resources: aliases, cursor: cursor}} = state) do
-    with %{"slug" => id} <- Enum.at(aliases, cursor) do
-      TefterCli.System.open(%{"path" => "aliases/#{id}/edit"})
+    with %{slug: id} <- Enum.at(aliases, cursor) do
+      TefterCli.System.open(%{path: "aliases/#{id}/edit"})
     else
       _ -> state
     end
@@ -83,7 +79,7 @@ defmodule TefterCli.Views.Aliases.State do
   def run_command(
         %{cmd: ":d" <> _, aliases: %{resources: [_ | _] = aliases, cursor: cursor}} = state
       ) do
-    with %{"slug" => id} <- Enum.at(aliases, cursor),
+    with %{slug: id} <- Enum.at(aliases, cursor),
          {:ok, _} <- Actions.delete(id) do
       state
       |> put_in([:cmd], nil)
@@ -110,7 +106,7 @@ defmodule TefterCli.Views.Aliases.State do
   def filtered_aliases(%{aliases: %{resources: aliases}, cmd: "/" <> filter}) do
     regex = ~r/#{Regex.escape(filter)}/imu
 
-    Enum.filter(aliases, fn %{"name" => name} ->
+    Enum.filter(aliases, fn %{name: name} ->
       String.match?(name, regex)
     end)
   end

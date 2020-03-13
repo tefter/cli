@@ -88,6 +88,13 @@ defmodule TefterCli.Command do
     |> put_in([:tab], :help)
   end
 
+  defp run_command(%{cmd: ":go " <> alias} = state) do
+    TefterCli.System.open(%{path: "/go/#{alias}"})
+
+    state
+    |> put_in([:cmd], nil)
+  end
+
   defp run_command(%{cmd: ":q" <> _}), do: TefterCli.Application.stop(:ok)
   defp run_command(%{tab: type} = state), do: TefterCli.App.view(type).run_command(state)
 

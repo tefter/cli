@@ -88,7 +88,7 @@ defmodule TefterCli.Views.Bookmarks.State do
 
   def run_command(%{cmd: ":e", bookmarks: %{resources: bookmarks, cursor: cursor}} = state) do
     with %{id: id} <- Enum.at(bookmarks, cursor) do
-      TefterCli.System.open(%{"path" => "bookmarks/#{id}/edit"})
+      TefterCli.System.open(%{path: "bookmarks/#{id}/edit"})
     else
       _ -> state
     end

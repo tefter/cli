@@ -3,8 +3,8 @@ defmodule TefterCli.System do
   Utility functions to interact with the OS
   """
 
-  def open(%{"url" => url}), do: open_url(url)
-  def open(%{"path" => path}), do: open("#{Tefter.base_url()}/#{path}")
+  def open(%{url: url}), do: open_url(url)
+  def open(%{path: path}), do: open("#{Tefter.base_url()}/#{path}")
   def open(path) when is_bitstring(path), do: open_url(path)
   def open(_), do: :ok
 

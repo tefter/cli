@@ -67,7 +67,7 @@ defmodule TefterCli.Views.Aliases do
   def handle_command(s), do: State.handle_command(s)
   def run_command(s), do: State.run_command(s)
 
-  defp render_alias(%{aliases: %{cursor: cursor}} = state, {%{"name" => name, "url" => url}, i}) do
+  defp render_alias(%{aliases: %{cursor: cursor}} = state, {%{name: name, url: url}, i}) do
     table_row(if cursor == i, do: @style_selected, else: []) do
       case state[:cmd] do
         "/" <> filter ->
