@@ -43,16 +43,25 @@ defmodule TefterCli.Views.Help do
               label(content: "Keyboard Controls", attributes: [@bold])
               label()
               label(content: "Tabs / Panes")
-              control_label("ctrl-s", "Search            (Search for bookmarks / lists / aliases)")
+
+              control_label(
+                "ctrl-s",
+                "Search            (Search for bookmarks / lists / aliases)"
+              )
+
               control_label("ctrl-a", "Aliases           (Displays your aliases)")
               control_label("ctrl-b", "Bookmarks         (Displays your bookmarks)")
               control_label("ctrl-h", "Help              (Shows this help screen)")
-              control_label("tab   ",    "Switches to the next tab")
-              control_label("home  ",   "Switches to the first tab")
+              control_label("tab   ", "Switches to the next tab")
+              control_label("home  ", "Switches to the first tab")
               label()
               label(content: "Navigation / Actions")
               control_label("UP/DOWN ctrl-j/ctrl-k or mouse wheel   ", "Scroll vertically")
-              control_label("ctrl-d/ctrl-u                          ", "Scroll up / down by half a page")
+
+              control_label(
+                "ctrl-d/ctrl-u                          ",
+                "Scroll up / down by half a page"
+              )
 
               control_label(
                 "enter                                  ",
@@ -70,7 +79,11 @@ defmodule TefterCli.Views.Help do
               label()
               label(content: "Bookmark Commands")
               control_label(":c <url>                               ", "Bookmarks the given URL")
-              control_label(":e                                     ", "Edits the selected bookmark")
+
+              control_label(
+                ":e                                     ",
+                "Edits the selected bookmark"
+              )
 
               control_label(
                 ":d                                     ",
@@ -86,11 +99,16 @@ defmodule TefterCli.Views.Help do
               label(content: "Alias Commands")
               control_label(":c <alias> <url>                       ", "Creates an alias")
               control_label(":e                                     ", "Edits the selected alias")
+
               control_label(
                 ":d                                     ",
                 "Deletes the alias under the cursor"
               )
-              control_label(":go <alias>                            ", "Navigates to the given alias")
+
+              control_label(
+                ":go <alias>                            ",
+                "Navigates to the given alias"
+              )
             end
           end
         end
@@ -106,7 +124,8 @@ defmodule TefterCli.Views.Help do
       {_, {:event, %{ch: ?k}}} when cursor > 0 ->
         put_in(state, [:help, :cursor], cursor - 1)
 
-      _ -> state
+      _ ->
+        state
     end
   end
 
