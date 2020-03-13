@@ -4,6 +4,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## [0.2.0] - 2020-03-13
+
+### Added
+
+* Caching to aliases so that they now work offline
+* New `:go <alias>` command which opens a browser window to the given alias
+* Scrolling in the help tab
+* Documentation for more shortcuts in help
+
 ## [0.1.2] - 2020-03-12
 
 ### Added
