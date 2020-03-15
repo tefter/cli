@@ -16,13 +16,13 @@ Use `enter` to open a browser window with a result.
 
 **Commands**
 
-Create an alias
+Create an alias.
 
 ```
 :c <alias> <url>
 ```
 
-Delete an alias
+Delete an alias.
 
 ```
 :d
@@ -42,13 +42,13 @@ Use `/` to start filtering.
 
 ![commands](https://i.imgur.com/6arscF3.png)
 
-Add a bookmark
+Add a bookmark.
 
 ```
 :c <url>
 ```
 
-Delete a bookmark
+Delete a bookmark.
 
 ```
 :d
@@ -105,7 +105,7 @@ You will find your token [here](https://tefter.io/users/edit).
 
 ## Running Locally
 
-First, ensure you have the following versions of Elixir and OTP installed on your machine.
+First, ensure you have the following versions of Elixir and OTP installed on your machine:
 
 ```
 erlang 21.3.2
