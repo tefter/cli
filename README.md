@@ -2,6 +2,31 @@
 
 The command-line client for [Tefter](https://tefter.io).
 
+# Installation
+
+Via brew:
+
+```shell
+brew tap tefter/homebrew-cli
+brew install tefter
+```
+
+Alternatively download a compatible release for your system from [releases](https://github.com/tefter/cli/releases).
+
+Extract and run `tefter_cli`.
+
+The first time you run it, it'll try to open a browser window to authenticate your Tefter account.
+This method of of authentication works if you've already signed up via the browser and are logged in.
+A fallback auth mechanism is to create a `~/.tefter` file with your API token.
+
+```json
+{
+  "token": "your_token_here"
+}
+```
+
+You will find your token [here](https://tefter.io/users/edit).
+
 ## Features
 
 ### Search
@@ -86,22 +111,6 @@ Key|Action
 <kbd>Ctrl</kbd>+<kbd>q</kbd>|Quit
 <kbd>/</kbd>|Enter filtering mode
 <kbd>:</kbd>|Enter command mode
-
-## Installation
-
-Download a compatible release for your system from [releases](https://github.com/tefter/cli/releases).
-Extract and run `tefter_cli`.
-
-The first time you run it, it'll try to open a browser window to authenticate your Tefter account.
-The alternative way to authenticate is to create a `~/.tefter` file with your API token.
-
-```json
-{
-  "token": "your_token_here"
-}
-```
-
-You will find your token [here](https://tefter.io/users/edit).
 
 ## Running Locally
 
