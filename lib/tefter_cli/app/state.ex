@@ -60,6 +60,7 @@ defmodule TefterCli.App.State do
 
       {_, {:event, %{key: @f5}}} ->
         IEx.Helpers.recompile()
+        TefterCli.Config.reset()
         state
 
       {_, {:event, %{key: @tab}}} ->

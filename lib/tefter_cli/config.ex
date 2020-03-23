@@ -24,6 +24,12 @@ defmodule TefterCli.Config do
     end
   end
 
+  def reset do
+    :persistent_term.erase(@key)
+
+    do_all()
+  end
+
   defp do_all do
     with {:ok, file} <- File.read(Path.expand(@config)),
          {:ok, conf} <- Jason.decode(file, keys: :atoms) do

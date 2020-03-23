@@ -5,6 +5,7 @@ defmodule TefterCli.Views.Components.BottomBar do
   """
 
   import Ratatouille.View
+  import TefterCli.Views.Components.Colorscheme, only: [color_for: 1]
 
   alias TefterCli.Config
 
@@ -17,8 +18,8 @@ defmodule TefterCli.Views.Components.BottomBar do
 
           if to_string(tab) == t do
             text(
-              background: :green,
-              color: :black,
+              background: color_for([:tabs, :selected, :background]),
+              color: color_for([:tabs, :selected, :color]),
               content: content
             )
           else

@@ -6,17 +6,14 @@ defmodule TefterCli.Views.Aliases do
   import Ratatouille.View
   import Ratatouille.Constants, only: [color: 1, attribute: 1]
   import TefterCli.Views.Helpers.Text, only: [highlight: 2]
+  import TefterCli.Views.Helpers.Table, only: [styles: 1]
+  import TefterCli.Views.Components.Colorscheme, only: [color_for: 1]
 
   alias TefterCli.Views.Aliases.State
   alias TefterCli.Views.Components.{TopBar, BottomBar, InfoPanel}
 
   @style_header [
     attributes: [attribute(:bold)]
-  ]
-
-  @style_selected [
-    color: color(:white),
-    background: color(:magenta)
   ]
 
   @min_offset_y 5
@@ -68,7 +65,7 @@ defmodule TefterCli.Views.Aliases do
   def run_command(s), do: State.run_command(s)
 
   defp render_alias(%{aliases: %{cursor: cursor}} = state, {%{name: name, url: url}, i}) do
-    table_row(if cursor == i, do: @style_selected, else: []) do
+    table_row(if cursor == i, do: styles(:selected), else: styles(:row)) do
       case state[:cmd] do
         "/" <> filter ->
           table_cell(content: name |> highlight(filter))
@@ -77,7 +74,7 @@ defmodule TefterCli.Views.Aliases do
           table_cell(content: name)
       end
 
-      table_cell(content: url, color: color(:blue))
+      table_cell(content: url, color: color_for([:aliases, :url]))
     end
   end
 

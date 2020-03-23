@@ -6,17 +6,13 @@ defmodule TefterCli.Views.Bookmarks do
   import Ratatouille.View
   import Ratatouille.Constants, only: [color: 1, attribute: 1]
   import TefterCli.Views.Helpers.Text, only: [truncate: 2, highlight: 2]
+  import TefterCli.Views.Helpers.Table, only: [styles: 1]
 
   alias TefterCli.Views.Bookmarks.State
   alias TefterCli.Views.Components.{TopBar, BottomBar, InfoPanel, Pagination}
 
   @style_header [
     attributes: [attribute(:bold)]
-  ]
-
-  @style_selected [
-    color: color(:white),
-    background: color(:magenta)
   ]
 
   @min_offset_y 5
@@ -48,7 +44,7 @@ defmodule TefterCli.Views.Bookmarks do
          %{bookmarks: %{cursor: cursor, resources: bookmarks}} = state,
          {%{title: title, url: url} = bookmark, _i}
        ) do
-    table_row(if Enum.at(bookmarks, cursor) == bookmark, do: @style_selected, else: []) do
+    table_row(if Enum.at(bookmarks, cursor) == bookmark, do: styles(:selected), else: styles(:row)) do
       case state[:cmd] do
         "/" <> filter ->
           table_cell(content: title |> truncate(70) |> highlight(filter))
