@@ -45,5 +45,6 @@ defmodule Tefter do
     delete("/aliases/#{id}")
   end
 
-  def base_url, do: "https://tefter.io"
+  # TEFTER_URL lets a development build talk to a local server.
+  def base_url, do: System.get_env("TEFTER_URL") || "https://tefter.io"
 end

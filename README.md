@@ -27,6 +27,49 @@ A fallback auth mechanism is to create a `~/.tefter` file with your API token.
 
 You will find your token [here](https://tefter.io/users/edit).
 
+## Running on a current system (2026 notes)
+
+This app and its published releases are from 2020; two things have shifted
+underneath them since.
+
+**Run with `start_iex`, not `start`.** On current Linux, plain `start` boots
+the VM with `-noshell` and termbox then opens the alternate screen and never
+draws a cell — a black, dead TUI with no error anywhere. If you extracted a
+release, run:
+
+```shell
+./bin/tefter_cli start_iex
+```
+
+(The bundled `tefter` launcher script still calls `start`.) Quit with
+<kbd>Ctrl</kbd>+<kbd>q</kbd> — <kbd>Ctrl</kbd>+<kbd>c</kbd> opens the BEAM
+break menu instead.
+
+**The 2020 Linux release needs two old libraries** current distributions no
+longer ship: `libtinfo5` and `libssl1.1`. Extract them from
+[archive.debian.org](http://archive.debian.org/debian/pool/main/) into a
+directory (no root needed) and point `LD_LIBRARY_PATH` at it.
+
+**Or build with Docker**, which is the easiest path now — Erlang 21 /
+Elixir 1.9 are hard to install natively:
+
+```shell
+docker build -t tefter-cli .
+touch ~/.tefter ~/.tefter_cache
+docker run -it --rm --network host \
+  -v ~/.tefter:/root/.tefter -v ~/.tefter_cache:/root/.tefter_cache tefter-cli
+```
+
+Opening links with <kbd>Enter</kbd> does not work from inside the container
+(there is no browser in there); the native release does that fine.
+
+**Inside tmux**, set `TERM=screen-256color` — termbox only knows the
+`xterm`/`screen`/`rxvt` terminal families, and tmux's default
+`tmux-256color` makes it fail silently.
+
+For development against a local server, `TEFTER_URL=http://localhost:3010`
+overrides the API host.
+
 ## Features
 
 ### Search
@@ -107,7 +150,7 @@ Key|Action
 <kbd>Ctrl</kbd>+<kbd>u</kbd>|Scroll up
 <kbd>Enter</kbd>| Open browser window with item under cursor
 <kbd>Esc</kbd>|Cancel command / Quit modal
-<kbd>F5</kbd>|Force refresh resources|
+<kbd>Ctrl</kbd>+<kbd>r</kbd>|Force refresh resources|
 <kbd>Ctrl</kbd>+<kbd>q</kbd>|Quit
 <kbd>/</kbd>|Enter filtering mode
 <kbd>:</kbd>|Enter command mode
